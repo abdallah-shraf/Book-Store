@@ -1,4 +1,4 @@
 <div class="heading">
-    <h3>our shop</h3>
-    <p><a href="{{ url('/home') }}">home</a> / @yield('title')</p>
+    <h3> @yield('title') </h3>
+    <p><a href="{{ route('home') }}">home</a> / @yield('title')</p>
 </div>

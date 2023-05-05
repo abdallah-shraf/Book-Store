@@ -26,7 +26,7 @@ Products
                 <a href="{{ route('products.show',$product->id ) }}"><img class="image" src="{{asset('images/Product/'.$product->ProductImage)}}" alt="" /></a>
 
                 <div class="name" name="name">{{$product->ProductsName}}</div>
-                <div class="price" name ="price">{{$product->UnitePrice}}</div>
+                <div class="price" name ="price">{{$product->UnitePrice}}$</div>
 
                 <input type="number"min="1"name="quantity"value="1"class="qty"/>
 
@@ -39,5 +39,6 @@ Products
     </div>
 
   </section>
+  @include('layouts.minefooter')
 
 @endsection

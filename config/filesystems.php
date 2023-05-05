@@ -38,6 +38,10 @@ return [
             'driver' => 'local',
             'root' => public_path(). '/images',
         ],
+        'Users' => [
+            'driver' => 'local',
+            'root' => public_path(). '/images',
+        ],
         'public' => [
             'driver' => 'local',
             'root' => storage_path('app/public'),

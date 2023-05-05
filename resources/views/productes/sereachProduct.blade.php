@@ -20,7 +20,7 @@ searsh Product
             @csrf
             <a href="{{ route('products.show',$product->id ) }}"><img class="image" src="{{asset('images/Product/'.$product->ProductImage)}}" alt="" /></a>
             <div class="name">{{$product->ProductsName}}</div>
-            <div class="price">{{$product->UnitePrice}}</div>
+            <div class="price">{{$product->UnitePrice}} $</div>
             <input  type="number"  class="qty"  name="product_quantity"  min="1"  value="1"/>
 
 
@@ -34,6 +34,7 @@ searsh Product
 
     </div>
   </section>
+  @include('layouts.minefooter')
 
 @endsection
 

@@ -15,18 +15,18 @@ Product Detaels
             @php
                 $secion = App\Models\Sections::find($product->sectionID);
             @endphp
-            <h3 class="name">product Name : {{$product->ProductsName}}</h3>
+            <h3 class="name">product Name   : {{$product->ProductsName}}</h3>
             <h4 class="price">product Price : {{$product->UnitePrice}}</h4>
-            <h4 class="price">product Price : {{$secion->Section_Name}}</h4>
-            <h4 class="price">product Genre : {{$product->Author}}</h4>
-            <p>{{$product->AboutProduct}}</p>
+            <h4 class="price">product Genre : {{$secion->Section_Name}}</h4>
+            <h4 class="price">Author        : {{$product->Author}}</h4>
+            <h4 class="price">Description   :    <p>{{$product->AboutProduct}}</p></h4>
             <!--<p>
             Lorem ipsum dolor sit amet consectetur, adipisicing elit. Accusamus,
             unde enim! Dignissimos inventore libero facilis deleniti eius
             aliquid est dolorem quam molestias sapiente voluptatum quos sunt
             voluptatem hic, esse maxime.
             </p>-->
-            <form action="{{route('cart.add', $product->id) }}" method="post" class="box">
+            <form action="{{route('cart.add', $product->id) }}" style="background: none;border: none;  box-shadow: none;" method="post" class="box">
                 @csrf
 
                 <input type="hidden"name="user_ID" value="{{Auth::user()->id}}">
@@ -40,5 +40,6 @@ Product Detaels
     </div>
   </section>
 
+  @include('layouts.minefooter')
 
 @endsection

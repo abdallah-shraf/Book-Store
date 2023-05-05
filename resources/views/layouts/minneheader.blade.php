@@ -1,26 +1,16 @@
 <header class="header">
-    <div class="header-1">
-      <div class="flex">
-        <div class="share">
-          <a href="#" class="fab fa-facebook-f"></a>
-          <a href="#" class="fab fa-twitter"></a>
-          <a href="#" class="fab fa-instagram"></a>
-          <a href="#" class="fab fa-linkedin"></a>
-        </div>
 
-      </div>
-    </div>
 
     <div class="header-2">
       <div class="flex">
-        <a href="{{ url('/home') }}" class="logo">5555 books</a>
+        <img src="{{ asset('images/Logo.jpeg') }}" alt="">
+        <a href="{{ route('home') }}" class="logo">Eshop World</a>
 
         <nav class="navbar">
-          <a href="{{ url('/home') }}">home</a>
+          <a href="{{ route('home') }}">home</a>
           <a href="{{ url('/about') }}">about</a>
           <a href="{{ url('/product/shop') }}">shop</a>
           <a href="{{ route('mile.contactUs') }}">contact</a>
-          <a href="orders.html">orders</a>
         </nav>
 
         <div class="">
@@ -28,7 +18,8 @@
 
           <form action="{{route('product.research')}}" style="margin: 0;"  method="get">
                 @csrf
-                <input  type="text"  name="search" style="width: auto; margin-right: 15px;" placeholder="search products..."  />
+                <input  type="text"  name="search" style="width: auto; margin-right: 15px; padding-left: 5px;"
+                placeholder="search products..." required />
                 <button type="submit" name="submit" value="search" class="fas fa-search"></button>
             </form>
 
@@ -64,9 +55,9 @@
                     <i class="fas fa-shopping-cart"></i>
                     @php
                         $user= Auth::user()->id;
-                        //$product = App\Models\CartItem::where('UserId',$user)->count('product_id');
+
+                    if (isset(App\Models\order::where('UserId',$user)->where('surly' , '1')->first()->id)) {
                         $order=App\Models\order::where('UserId',$user)->where('surly' , '1')->first()->id;
-                    if (isset($order)) {
                         $product = App\Models\CartItem::where('order_Id', $order)->count('product_id');
                     }
                         else {
@@ -84,7 +75,7 @@
                   <div class="user-box">
 
 
-                      <p>username : <span>{{ Auth::user()->name }}</span></p>
+                      <p>username : <a href="{{ route('user.order', Auth::user()->id ) }}"><span>{{ Auth::user()->name }}</a></span></p>
                       <p>email : <span>{{ Auth::user()->email }}</span></p>
 
                       <a class="delete-btn" href="{{ route('logout') }}"
@@ -93,7 +84,7 @@
                               {{ __('Logout') }}
                       </a>
 
-                      <form id="logout-form" action="{{ route('logout') }}" method="POST" class="d-none">
+                      <form id="logout-form" action="{{ route('logout') }}" style="background: none; padding: 0px; border: none;" method="POST" class="d-none">
                           @csrf
                       </form>
                   </div>

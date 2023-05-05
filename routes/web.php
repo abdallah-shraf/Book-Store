@@ -7,24 +7,16 @@ use App\Http\Controllers\ProuductsController;
 use Illuminate\Support\Facades\Mail;
 use Illuminate\Support\Facades\Route;
 
-/*
-|--------------------------------------------------------------------------
-| Web Routes
-|--------------------------------------------------------------------------
-|
-| Here is where you can register web routes for your application. These
-| routes are loaded by the RouteServiceProvider within a group which
-| contains the "web" middleware group. Now create something great!
-|
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
-
 Auth::routes();
 
 Route::get('/home', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+Route::get('/', [App\Http\Controllers\HomeController::class, 'index'])->name('home');
+
+
+//user
+Route::get('/user/order/{id}', [App\Http\Controllers\OrderController::class, 'user'])->name('user.order');
+
 
 //all sections function
 Route::resource('/sections',App\Http\Controllers\SectionsController::class);
@@ -67,3 +59,8 @@ Route::get('/about', function () {
     return view('about');
 });
 
+
+Route::get('/ma', function () {
+    Mail::to('abdallahashraf743@gmail.com')->send(new TestMail());
+    return "Done Send Mailing";
+});

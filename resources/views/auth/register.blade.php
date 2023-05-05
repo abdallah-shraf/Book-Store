@@ -35,7 +35,10 @@
             </div>
         </div>
 
-
+        <input  type="text"  name="addressName"  placeholder="Enter your address...."  required  class="box"/>
+        <input  type="text"  name="country"  placeholder="Enter your country...."  required  class="box"/>
+        <input  type="text"  name="city"  placeholder="Enter your city...."  required  class="box"/>
+        <input  type="text"  name="phoneNumber"  placeholder="Enter your phone number...."  required  class="box"/>
 
       <!--<input type="password" name="password" placeholder="enter your password" required class="box"/>-->
 
@@ -62,11 +65,9 @@
                 <input id="password-confirm" type="password"placeholder="confirm your password" class="box form-control" name="password_confirmation" required autocomplete="new-password">
             </div>
         </div>
-        <!--boolian create data base -->
-      <select name="user_type" class="box">
-        <option value="user">user</option>
-        <option value="admin">admin</option>
-      </select>
+
+
+
 
 
       <input type="submit" name="submit" value="register now" class="btn  " />

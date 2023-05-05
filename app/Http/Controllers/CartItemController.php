@@ -30,13 +30,16 @@ class CartItemController extends Controller
 
         $userId=Auth::user()->id;
 
+
+       if (isset(order::where('UserId',$userId)->where('surly' , '1')->first()->id)) {
         $order=order::where('UserId',$userId)->where('surly' , '1')->first()->id;
-       // $cartItem = CartItem::where('order_Id', $order)->where('product_id', $productId)->first();
-      /* if (isset($order)) {
         $cartItem = CartItem::where('order_Id', $order)->get();
-       }*/
-       $cartItem = CartItem::where('order_Id', $order)->get();
         return view('invoices.cart', compact('cartItem'));
+       }else{
+        $data="Is Not data .";
+        return view('invoices.cartClear',compact('data'));
+       }
+
 
     }
 
@@ -101,29 +104,8 @@ class CartItemController extends Controller
         $cartItem->quantity=$request->quantity;
         $cartItem->total_price=$request->quantity * $cartItem->unit_price;
         $cartItem->save();
-        return $cartItem;
-      //  $cart = session()->get('cart');
+        return back();
 
-        $productId=$request->get('product_id');
-        return$productId;
-        $userId=Auth::user()->id;
-        $order=order::where('UserId',$userId)->first()->id;
-        $cartItem = CartItem::where('order_Id', $order)->where('product_id', $productId)->find($id);
-        return $cartItem;
-        $cartItem->quantity=$request->quantity;
-        $cartItem->total_price=$request->quantity * $cartItem->unit_price;
-        $cartItem->save();
-
-
-       /* return back();
-        //return $productId;
-            if(isset($cart[$productId])) {
-                $cart[$id]['quantity'] = $request->quantity;
-                $cart[$id]['total_price']=$cart[$id]['unit_price'] * $cart[$id]['quantity'];
-                session()->put('cart', $cart);
-            }
-            $updat_quntity= CartItem::findOrFail($request->product_id);
-            return back();*/
 
     }
 
@@ -138,32 +120,7 @@ class CartItemController extends Controller
         $item=CartItem::find($id);
         $item->delete();
         return back();
-    }/*
-    public function removeCartItem(Request $request)
-    {
-
-
-
-        $productId=$request->get('product_id');
-        $userId=Auth::user()->id;
-        $order=order::where('UserId',$userId)->first()->id;
-
-        $cartItem = CartItem::where('order_Id', $order)->where('product_id', $productId)->first()->id;
-        return $cartItem;
-        //return $cartItem;
-
-        $cartItem->delete();/*
-        $productId = $request->get('product_id');
-        $cart = session()->get('cart');
-        //return $productId;
-        if (isset($cart[$productId])) {
-            unset($cart[$productId]);
-            session()->put('cart', $cart);
-        }
-       // $prducts=Prouducts::all();
-        return back();
-    }*/
-
+    }
 
 
     public function Confirmation()

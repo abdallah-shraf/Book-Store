@@ -55,7 +55,7 @@ class SectionsController extends Controller
             'Created-by'=>(Auth::user()->name),
         ]);
 
-        return response('تمت اضافه البنات بنجاح');
+        return back();
     }
 
     /**

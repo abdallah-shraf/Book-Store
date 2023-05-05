@@ -17,5 +17,6 @@
 
 
 <script src="js/script.js"></script>
+@include('layouts.minefooter')
 
 @endsection

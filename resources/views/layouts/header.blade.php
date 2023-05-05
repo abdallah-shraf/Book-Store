@@ -23,11 +23,10 @@
     <body>
 
         <!--header-->
-        
+
 
         @yield('header')
         @yield('content')
-        @include('layouts.minefooter')
         <!-- footer -->
 
 
